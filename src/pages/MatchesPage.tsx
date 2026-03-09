@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { type PageName, type Mentor } from "../types";
 import collabImg from "../assets/mentor-pic.PNG";
+import MentorModal from "../components/MentorModal";
 
 interface MatchesPageProps {
   goToPage: (page: PageName) => void;
@@ -55,6 +56,8 @@ const mentors: Mentor[] = [
 ];
 
 const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
+  const [selectedMentor, setSelectedMentor] = useState<Mentor | null>(null);
+
   const selectMentor = (name: string) => {
     if (confirm(`Connect with ${name}?`)) goToPage("success");
   };
@@ -64,7 +67,6 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
   return (
     <div className="page active found">
       <div className="logo">
-        {/* <h1>👩‍💼 SheLeads</h1> */}
         <img
           src={collabImg}
           alt="collab image"
@@ -80,7 +82,13 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
       {mentors.map((mentor) => (
         <div key={mentor.name} className="mentor-card">
           <div className="mentor-header">
-            <div className="mentor-avatar">{mentor.initials}</div>
+            <div
+              className="mentor-avatar"
+              style={{ cursor: "pointer" }}
+              onClick={() => setSelectedMentor(mentor)}
+            >
+              {mentor.initials}
+            </div>
             <div className="mentor-info">
               <h3>{mentor.name}</h3>
               <p>
@@ -98,6 +106,13 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
           <button className="btn" onClick={() => selectMentor(mentor.name)}>
             Choose {mentor.name}
           </button>
+          <button
+            className="btn btn-secondary"
+            style={{ marginLeft: "10px" }}
+            onClick={() => setSelectedMentor(mentor)}
+          >
+            View Profile
+          </button>
         </div>
       ))}
 
@@ -106,6 +121,14 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
           🔄 Show Different Matches
         </button>
       </div>
+
+      {/* Mentor Modal */}
+      {selectedMentor && (
+        <MentorModal
+          mentor={selectedMentor}
+          onClose={() => setSelectedMentor(null)}
+        />
+      )}
     </div>
   );
 };

@@ -30,9 +30,9 @@ const Navbar: React.FC<NavbarProps> = ({ goToPage }) => {
         {/* Desktop Links */}
         <ul className="nav-links" style={{ listStyle: "none" }}>
           <li onClick={() => handleNavClick("profile")}>Profile</li>
-          <li onClick={() => handleNavClick("survey")}>Survey</li>
+          {/* <li onClick={() => handleNavClick("survey")}>Survey</li> */}
           <li onClick={() => handleNavClick("matches")}>Matches</li>
-          <li onClick={() => handleNavClick("success")}>Success</li>
+          {/* <li onClick={() => handleNavClick("success")}>Success</li> */}
         </ul>
 
         {/* Mobile Hamburger */}

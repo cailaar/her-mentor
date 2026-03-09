@@ -1,5 +1,6 @@
 import React from "react";
 import { type PageName } from "../types";
+import collabImg from "../assets/mentor-pic.PNG";
 
 interface SuccessPageProps {
   goToPage: (page: PageName) => void;
@@ -11,7 +12,11 @@ const SuccessPage: React.FC<SuccessPageProps> = ({ goToPage }) => {
   return (
     <div className="page active">
       <div className="logo">
-        <h1>👩‍💼 SheLeads</h1>
+        <img
+          src={collabImg}
+          alt="collab image"
+          style={{ width: "200px", height: "80px" }}
+        />
         <p className="tagline">Congratulations!</p>
       </div>
 
