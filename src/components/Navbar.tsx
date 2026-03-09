@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { PageName } from "../types";
+import { type PageName } from "../types";
 
 interface NavbarProps {
   goToPage: (page: PageName) => void;
