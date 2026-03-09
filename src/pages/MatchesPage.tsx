@@ -1,5 +1,6 @@
 import React from "react";
 import { type PageName, type Mentor } from "../types";
+import collabImg from "../assets/mentor-pic.PNG";
 
 interface MatchesPageProps {
   goToPage: (page: PageName) => void;
@@ -61,9 +62,14 @@ const MatchesPage: React.FC<MatchesPageProps> = ({ goToPage }) => {
   const refreshMatches = () => alert("Loading new matches...");
 
   return (
-    <div className="page active">
+    <div className="page active found">
       <div className="logo">
-        <h1>👩‍💼 SheLeads</h1>
+        {/* <h1>👩‍💼 SheLeads</h1> */}
+        <img
+          src={collabImg}
+          alt="collab image"
+          style={{ width: "200px", height: "80px" }}
+        />
         <p className="tagline">Your perfect matches</p>
       </div>
 

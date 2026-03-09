@@ -6,6 +6,7 @@ import ProfilePage from "./pages/ProfilePage";
 import SurveyPage from "./pages/SurveyPage";
 import MatchesPage from "./pages/MatchesPage";
 import SuccessPage from "./pages/SuccessPage";
+import ChatButton from "./components/ChatButton";
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState("login");
@@ -15,12 +16,23 @@ export default function App() {
   return (
     <>
       <Navbar goToPage={goToPage} />
-      {currentPage === "login" && <LoginPage goToPage={goToPage} />}
-      {currentPage === "role" && <RolePage goToPage={goToPage} />}
-      {currentPage === "profile" && <ProfilePage goToPage={goToPage} />}
-      {currentPage === "survey" && <SurveyPage goToPage={goToPage} />}
-      {currentPage === "matches" && <MatchesPage goToPage={goToPage} />}
-      {currentPage === "success" && <SuccessPage goToPage={goToPage} />}
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "column",
+          minHeight: "100vh",
+        }}
+      >
+        {currentPage === "login" && <LoginPage goToPage={goToPage} />}
+        {currentPage === "role" && <RolePage goToPage={goToPage} />}
+        {currentPage === "profile" && <ProfilePage goToPage={goToPage} />}
+        {currentPage === "survey" && <SurveyPage goToPage={goToPage} />}
+        {currentPage === "matches" && <MatchesPage goToPage={goToPage} />}
+        {currentPage === "success" && <SuccessPage goToPage={goToPage} />}
+      </div>
+      <ChatButton onClick={() => alert("Chatbot would open here")} />
     </>
   );
 }

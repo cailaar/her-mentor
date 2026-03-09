@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import type { PageName } from "../types";
+import collabImg from "../assets/mentor-pic.PNG";
 
 interface SurveyPageProps {
   goToPage: (page: PageName) => void;
@@ -51,9 +52,14 @@ const SurveyPage: React.FC<SurveyPageProps> = ({ goToPage }) => {
   const progressPercent = (currentStep / totalSteps) * 100;
 
   return (
-    <div className="page active">
+    <div className="page active matches">
       <div className="logo">
-        <h1>👩‍💼 SheLeads</h1>
+        {/* <h1>👩‍💼 SheLeads</h1> */}
+        <img
+          src={collabImg}
+          alt="collab image"
+          style={{ width: "200px", height: "80px" }}
+        />
         <p className="tagline">Let's find your perfect match</p>
       </div>
 
