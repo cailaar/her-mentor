@@ -68,7 +68,7 @@ const SurveyPage: React.FC<SurveyPageProps> = ({ goToPage }) => {
       {/* Step Contents */}
       {currentStep === 1 && (
         <div className="survey-step">
-          <h2>Section A: About You</h2>
+          <h2>About You</h2>
           <div className="form-group">
             <label>Name</label>
             <input type="text" placeholder="Your name" />
@@ -93,7 +93,7 @@ const SurveyPage: React.FC<SurveyPageProps> = ({ goToPage }) => {
 
       {currentStep === 2 && (
         <div className="survey-step">
-          <h2>Section B: Your Goals</h2>
+          <h2>Your Goals</h2>
           <div className="checkbox-group">
             {[
               "Improve CV",
@@ -122,7 +122,7 @@ const SurveyPage: React.FC<SurveyPageProps> = ({ goToPage }) => {
 
       {currentStep === 3 && (
         <div className="survey-step">
-          <h2>Section C: Skills to Learn</h2>
+          <h2>Skills to Learn</h2>
           <div className="skill-bubbles">
             {skills.map((skill) => (
               <div
@@ -139,7 +139,7 @@ const SurveyPage: React.FC<SurveyPageProps> = ({ goToPage }) => {
 
       {currentStep === 4 && (
         <div className="survey-step">
-          <h2>Section D: Preferences</h2>
+          <h2>Preferences</h2>
           <div className="form-group">
             <label>Meeting style preference</label>
             <div className="checkbox-group">
