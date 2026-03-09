@@ -1,101 +1,60 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { PageName } from "../types";
 
-export default function Navbar() {
+interface NavbarProps {
+  goToPage: (page: PageName) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ goToPage }) => {
   const [open, setOpen] = useState(false);
 
-  return (
-    <nav
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        padding: "1rem 1.5rem",
-        background: "#1a1a1a",
-        color: "white",
-        position: "sticky",
-        top: 0,
-        zIndex: 100,
-      }}
-    >
-      {/* Logo */}
-      <div style={{ fontWeight: "bold", fontSize: "1.3rem" }}>MentorMatch</div>
+  const links: { name: string; page: PageName }[] = [
+    { name: "Home", page: "login" },
+    { name: "Profile", page: "profile" },
+    { name: "Survey", page: "survey" },
+    { name: "Matches", page: "matches" },
+  ];
 
-      {/* Desktop links */}
-      <div
-        className="nav-links"
-        style={{
-          display: "none",
-          gap: "1.5rem",
-        }}
-      >
-        <a href="#" className="nav-link">
-          Home
-        </a>
-        <a href="#" className="nav-link">
-          Chatbot
-        </a>
-        <a href="#" className="nav-link">
-          Matches
-        </a>
-        <a href="#" className="nav-link">
-          About
-        </a>
+  return (
+    <nav className="navbar">
+      <div className="logo" onClick={() => goToPage("login")}>
+        👩‍💼 SheLeads
       </div>
 
-      {/* Mobile hamburger */}
-      <button
-        aria-label="Toggle navigation menu"
-        onClick={() => setOpen(!open)}
-        style={{
-          background: "none",
-          border: "none",
-          color: "white",
-          fontSize: "1.8rem",
-          cursor: "pointer",
-          display: "block",
-        }}
-        className="hamburger"
-      >
+      <div className="nav-links">
+        {links.map((link) => (
+          <button
+            key={link.name}
+            className="nav-link"
+            onClick={() => goToPage(link.page)}
+          >
+            {link.name}
+          </button>
+        ))}
+      </div>
+
+      <button className="hamburger" onClick={() => setOpen(!open)}>
         {open ? "✖" : "☰"}
       </button>
 
-      {/* Mobile menu */}
       {open && (
-        <div
-          style={{
-            position: "absolute",
-            top: "100%",
-            right: 0,
-            background: "#1a1a1a",
-            width: "100%",
-            display: "flex",
-            flexDirection: "column",
-            padding: "1rem 0",
-            borderTop: "1px solid #333",
-          }}
-        >
-          <a className="mobile-link" href="#" style={linkStyle}>
-            Home
-          </a>
-          <a className="mobile-link" href="#" style={linkStyle}>
-            Chatbot
-          </a>
-          <a className="mobile-link" href="#" style={linkStyle}>
-            Matches
-          </a>
-          <a className="mobile-link" href="#" style={linkStyle}>
-            About
-          </a>
+        <div className="mobile-menu">
+          {links.map((link) => (
+            <button
+              key={link.name}
+              className="mobile-link"
+              onClick={() => {
+                goToPage(link.page);
+                setOpen(false);
+              }}
+            >
+              {link.name}
+            </button>
+          ))}
         </div>
       )}
     </nav>
   );
-}
-
-const linkStyle = {
-  padding: "1rem",
-  textAlign: "center",
-  color: "white",
-  textDecoration: "none",
-  fontSize: "1.1rem",
 };
+
+export default Navbar;
